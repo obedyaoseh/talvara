@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Talvara">
+  <rect width="64" height="64" rx="14" fill="#1A1714"/>
+  <text x="31.5" y="45" text-anchor="middle" fill="#FAF7F2" font-family="Playfair Display, Georgia, serif" font-size="40" font-weight="700" letter-spacing="-3">T</text>
+  <circle cx="42.5" cy="41.5" r="5.5" fill="#C9A84C"/>
+  <rect x="14" y="51" width="36" height="2.5" rx="1.25" fill="#C9A84C"/>
+</svg>
