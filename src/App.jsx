@@ -999,6 +999,7 @@ function Home() {
               See How It Works
             </CTAButton>
           </ButtonRow>
+          <HeroSystemRail />
         </div>
       </section>
       <StatBar />
@@ -1523,6 +1524,7 @@ function HowItWorks() {
         eyebrow="The Platform"
         title="Three entities. Five steps. One outcome."
         subtitle="From open application in Africa to live pipeline in your CRM - every step is owned, structured, and accountable. Here's exactly how the Talvara platform works end to end."
+        visual={<InfrastructureVisual />}
       />
       <section className="section" id="platform">
         <SectionIntro
@@ -1630,6 +1632,7 @@ function Pricing() {
         eyebrow="Pricing"
         title="Four offers. Zero ambiguity."
         subtitle="No hidden costs. No surprise recruitment fees. Every offer includes the Revenue Readiness Score, AI-powered matching, managed deployment, Client Portal access, and the outbound playbook on exit."
+        visual={<PricingSignalVisual />}
       />
       <section className="section pricing-offer-section">
         <div className="offer-grid">
@@ -1701,6 +1704,7 @@ function About() {
         eyebrow="About Talvara"
         title="We built the platform we wished existed."
         subtitle="Talvara exists because the commercial talent layer in Africa was completely unaddressed - and because the right answer was never fully human or fully automated. It was both, in the right order. So we built the infrastructure to make it work."
+        visual={<CohortSignalVisual />}
       />
       <section className="section">
         <SectionIntro
@@ -1788,8 +1792,9 @@ function About() {
           title="The principles we operate by."
         />
         <div className="value-list">
-          {values.map(([title, body]) => (
+          {values.map(([title, body], index) => (
             <Card as="article" className="value-card compact-list-card motion-card" key={title} data-reveal>
+              <span className="value-index">{String(index + 1).padStart(2, '0')}</span>
               <h3>{title}</h3>
               <p>{body}</p>
             </Card>
@@ -1833,6 +1838,117 @@ function ProfileCard({ name, score, image, imagePosition }) {
   )
 }
 
+function HeroSystemRail() {
+  return (
+    <div className="hero-system-rail" aria-label="Talvara delivery model">
+      <span>ASA-trained talent</span>
+      <span>RRS-assessed pool</span>
+      <span>Talvara-managed delivery</span>
+    </div>
+  )
+}
+
+function InfrastructureVisual() {
+  const nodes = [
+    {
+      name: 'Africa Sales Academy',
+      label: 'Source + train',
+      logo: '/logos/africa-sales-academy.png',
+    },
+    {
+      name: 'MySalesLMS',
+      label: 'Curriculum + evidence',
+      logo: '/logos/mysaleslms-alt.png',
+    },
+    {
+      name: 'Talvara',
+      label: 'Deploy + manage',
+      logo: '/talvara-logo.png',
+    },
+  ]
+
+  return (
+    <div className="native-visual infrastructure-visual" aria-label="Talvara platform infrastructure">
+      {nodes.map((node, index) => (
+        <div className="native-node" key={node.name}>
+          <span className="native-index">{String(index + 1).padStart(2, '0')}</span>
+          <span className="native-logo">
+            <img src={node.logo} alt={`${node.name} logo`} loading="lazy" />
+          </span>
+          <strong>{node.name}</strong>
+          <em>{node.label}</em>
+        </div>
+      ))}
+      <div className="native-flow-line" aria-hidden="true" />
+      <div className="native-visual-footer">
+        <span>Open application</span>
+        <span>RRS 7.0+ gate</span>
+        <span>Live pipeline</span>
+      </div>
+    </div>
+  )
+}
+
+function PricingSignalVisual() {
+  return (
+    <div className="native-visual pricing-signal-visual" aria-label="Talvara pricing offers">
+      {pricingOffers.map((offer) => (
+        <div className={offer.featured ? 'featured' : ''} key={offer.title}>
+          <span>{offer.eyebrow.replace('Offer ', '')}</span>
+          <strong>{offer.title}</strong>
+          <em>{offer.price}</em>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function CohortSignalVisual() {
+  const featured = ['Joy E.', 'Kwesi D.', 'Ruby B.', 'Alice O.', 'Mark Q.']
+
+  return (
+    <div className="native-visual cohort-signal-visual" aria-label="Assessed SDR talent pool">
+      <div className="cohort-avatar-row">
+        {featured.map((name) => (
+          <Avatar
+            key={name}
+            name={name}
+            src={sdrHeadshots[name]}
+            style={sdrHeadshotPositions[name] ? { '--avatar-position': sdrHeadshotPositions[name] } : undefined}
+          />
+        ))}
+      </div>
+      <div className="cohort-signal-copy">
+        <strong>17 assessed SDRs</strong>
+        <span>Across Cohort 1 and Cohort 2</span>
+      </div>
+      <div className="cohort-signal-meta">
+        <span>RRS 7.0+ deployment gate</span>
+        <span>Active cohorts: Nigeria & Ghana</span>
+      </div>
+    </div>
+  )
+}
+
+function ContactSignalVisual() {
+  return (
+    <div className="native-visual contact-signal-visual" aria-label="Talvara response process">
+      <div>
+        <span>01</span>
+        <strong>Tell us the pipeline problem</strong>
+      </div>
+      <div>
+        <span>02</span>
+        <strong>Founder-led review</strong>
+      </div>
+      <div>
+        <span>03</span>
+        <strong>Reply within 24 hours</strong>
+      </div>
+    </div>
+  )
+}
+
 function Contact() {
   const [formStatus, setFormStatus] = useState('idle')
 
@@ -1868,6 +1984,7 @@ function Contact() {
         eyebrow="Get In Touch"
         title="A real conversation. No forms. No sequences."
         subtitle="Every enquiry gets a personal response within 24 hours - from a person, not an automated system. Tell us your pipeline problem. We'll tell you honestly whether Talvara is the right fit."
+        visual={<ContactSignalVisual />}
       />
       <section className="section">
         <div className="contact-grid">
@@ -1970,13 +2087,14 @@ function Contact() {
   )
 }
 
-function PageHero({ eyebrow, title, subtitle, className = '' }) {
+function PageHero({ eyebrow, title, subtitle, className = '', visual }) {
   return (
     <section className={`page-hero dark-section ${className}`}>
       <div data-reveal>
         <Eyebrow dark>{eyebrow}</Eyebrow>
         <h1 data-word-reveal>{title}</h1>
         <p>{subtitle}</p>
+        {visual && <div className="page-hero-visual">{visual}</div>}
       </div>
     </section>
   )
