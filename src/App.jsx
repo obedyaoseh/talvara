@@ -9,6 +9,7 @@ import { Textarea } from './components/ui/textarea'
 import './App.css'
 
 const CALENDLY_URL = 'https://calendly.com/talvara'
+const CONTACT_EMAIL = 'enquiries@talvara.io'
 const CURRENT_YEAR = new Date().getFullYear()
 const GOOGLE_FORM_ACTION =
   'https://docs.google.com/forms/d/e/1FAIpQLSe7cvAf0WTxd3IXPTxhc9Cui0Yb3Uj4162IUIqER49F9uFqfw/formResponse'
@@ -61,28 +62,30 @@ const heroPills = [
 
 const logos = [
   {
-    name: 'International Trade Centre',
+    name: 'Self-Leadership Training with Lauren Cartigny',
+    src: '/logos/self-science-lab.png',
+    invert: true,
+  },
+  {
+    name: 'Shift Left Jamaica',
+    src: '/logos/shift-left-jamaica.png',
+  },
+  {
+    name: 'TalentMatched',
+    src: '/logos/talentmatched.svg',
+    invert: true,
+  },
+  {
+    name: 'Crucible International Inc.',
+    src: '/logos/crucible-international.png',
+  },
+  {
+    name: 'United Nations ITC',
     src: '/logos/international-trade-centre.svg',
   },
   {
-    name: 'Demandbase',
-    src: '/logos/demandbase.svg',
-  },
-  {
-    name: 'Sistas in Sales',
-    src: '/logos/sistas-in-sales.jpg',
-  },
-  {
-    name: 'Africa Sales Academy',
-    src: '/logos/africa-sales-academy.png',
-  },
-  {
-    name: 'MySalesLMS',
-    src: '/logos/mysaleslms-alt.png',
-  },
-  {
-    name: 'EVF Consulting',
-    src: '/logos/evf-consulting.png',
+    name: 'Battleground',
+    src: '/logos/battleground.png',
   },
 ]
 
@@ -125,7 +128,7 @@ const rrsAreas = [
 ]
 
 const cohort = [
-  ['Sekinat S.', null],
+  ['Sekinat S.', '7.3'],
   ['Alice O.', '7.0'],
   ['Mark Q.', '7.5'],
   ['Faustina A.', '7.0'],
@@ -217,9 +220,9 @@ const pricingOffers = [
     price: '$2,500/mo',
     meta: '$7,500 total - then $3,375/mo min 1-year',
     body:
-      'The full Talvara product - AI matching, RRS assessment, Client Portal access, human-managed deployment - at 80% of the ongoing monthly rate. Weekly reports. Day 60 mid-review. Free replacement guarantee. At Day 90, convert or exit cleanly.',
+      'The full Talvara product - AI matching, RRS assessment, Client Portal access, human-managed deployment - at 80% of the ongoing monthly rate. Weekly reports. Day 60 mid-review. Free replacement guarantee. At Day 90, convert or exit cleanly. Pod pilot: $7,500/mo - $22,500 total.',
     bestFor:
-      "You're buying 90 days of AI-matched, human-managed outbound with a live Client Portal, weekly reports, coaching sprints, and a replacement guarantee - for $7,500 total.",
+      "You're not hiring someone and hoping it works. You're buying 90 days of AI-matched, human-managed outbound - with a live Client Portal, weekly reports, coaching sprints, and a replacement guarantee - for $7,500 total. Less than a month of a US SDR's fully loaded cost.",
     featured: true,
   },
 ]
@@ -280,6 +283,10 @@ const pricingFaqs = [
     'Do I keep anything when the engagement ends?',
     'Yes. The full outbound playbook - ICP definition, messaging, objection scripts, sequence architecture - is delivered to you on exit. The institutional knowledge stays in your business permanently.',
   ],
+  [
+    'What tools do SDRs work in?',
+    "Your stack. SDRs are briefed and set up on your CRM, sequencer, and prospecting tools before outbound starts. Tools cost is included for all managed engagements. We don't impose a fixed stack - we work in what you use.",
+  ],
 ]
 
 const portalFeatures = [
@@ -290,8 +297,8 @@ const portalFeatures = [
   'Status indicators - On Track / Watch',
   'Day 90 conversion alert',
   'Weekly pipeline summary',
-  'ICP optimisation suggestions',
   'Meeting calendar integration',
+  'ICP optimisation suggestions',
   'Request additional SDRs',
 ]
 
@@ -304,54 +311,54 @@ const dashboardFeatures = [
   'AI-prioritised prospect queue with status tags',
   'Pipeline attribution tracking',
   'Coaching sprint alerts',
-  'Career progression tracker',
   'Weekly check-in reminders',
+  'Career progression tracker',
 ]
 
 const partners = [
-  ['Africa Sales Academy', 'Talent sourcing and commercial training infrastructure.', '/logos/africa-sales-academy.png'],
-  ['MySalesLMS', 'Proprietary eLearning platform built for ASA learners.', '/logos/mysaleslms-alt.png'],
-  ['Sistas in Sales', 'Global community supporting commercial career growth.', '/logos/sistas-in-sales.jpg'],
-  ['International Trade Centre', 'Trade development and market-entry programme experience.', '/logos/international-trade-centre.svg'],
-  ['Demandbase', 'B2B go-to-market ecosystem proof point.', '/logos/demandbase.svg'],
-  ['EVF Consulting', 'Commercial education and relationship-led growth partner.', '/logos/evf-consulting.png'],
+  ['Self-Leadership Training with Lauren Cartigny', 'Self-leadership and commercial confidence training.', '/logos/self-science-lab.png'],
+  ['Shift Left Jamaica', 'Nearshore software development, QA testing, and IT solutions.', '/logos/shift-left-jamaica.png'],
+  ['TalentMatched', 'AI hiring infrastructure and talent qualification partner.', '/logos/talentmatched.svg'],
+  ['Crucible International Inc.', 'Outsourcing, operational transformation, and delivery partner.', '/logos/crucible-international.png'],
+  ['United Nations ITC', 'Trade development and market-entry programme experience.', '/logos/international-trade-centre.svg'],
+  ['Battleground', 'Risk, resilience, and business continuity software and consulting.', '/logos/battleground.png'],
 ]
 
 const whyBuilt = [
   [
     "Africa's talent surge is real",
-    '304 million young Africans aged 21-30 are in the workforce today. Sub-Saharan GDP is growing at 4.3% in 2026 - faster than every other major region. We built the Africa Sales Academy and MySalesLMS to give that talent a structured pathway to global commercial roles.',
+    '304 million young Africans aged 21-30 are in the workforce today. Sub-Saharan GDP is growing at 4.3% in 2026 - faster than every other major region. The commercial talent pool is enormous, but understructured. We built the Africa Sales Academy and MySalesLMS to give that talent a structured pathway to global commercial roles. Applications are open across Africa. Location is not a barrier to entry.',
   ],
   [
     'AI proved humans irreplaceable',
-    "AI can surface and rank talent, prioritise prospect queues, and generate performance insights. It cannot replace the human judgment layer - objection handling, trust, contextual reading, and relationship building. That layer is Talvara's product.",
+    "The most-funded autonomous AI SDR raised $74 million. It couldn't retain its own customers and reverted to a hybrid model by 2026. AI can surface and rank talent, prioritise prospect queues, and generate performance insights. It cannot replace the human judgment layer - objection handling, trust, contextual reading, and relationship building. That layer is Talvara's product.",
   ],
   [
     'Nobody built the commercial layer',
-    'Andela proved African talent can be placed with Western enterprise at scale, then moved upmarket to senior engineering and left the commercial layer unaddressed. We built the Academy, LMS, assessment IP, Client Portal, and SDR Dashboard to own that space.',
+    'Andela proved African talent can be placed with Western enterprise at scale, then moved upmarket to senior engineering and left the commercial layer unaddressed. No funded competitor owns the space. We built the Academy, LMS, assessment IP, Client Portal, and SDR Dashboard to own that space.',
   ],
 ]
 
 const values = [
   [
     'AI where it belongs. Humans where it matters.',
-    'We use AI to match, score, rank, and generate insights. We use humans to review every result, make every critical decision, and own every outcome.',
+    'We use AI to match, score, rank, and generate insights. We use humans to review every result, make every critical decision, and own every outcome. The two work together. Neither replaces the other.',
   ],
   [
     'Built end to end - not bolted together.',
-    'The Africa Sales Academy, MySalesLMS, the RRS, the Client Portal, and the SDR Dashboard are all built and owned by Talvara. It is an integrated platform - and that integration is the moat.',
+    'The Africa Sales Academy, MySalesLMS, the RRS, the Client Portal, and the SDR Dashboard are all built and owned by Talvara. This is not a patchwork of third-party tools. It is an integrated platform - and that integration is the moat.',
   ],
   [
     'Assessed before arrival.',
-    "No SDR reaches a client without clearing the Revenue Readiness Score. We don't ship potential. We ship readiness.",
+    "No SDR reaches a client without clearing the Revenue Readiness Score. Every candidate is scored across five weighted competency categories. We don't ship potential. We ship readiness.",
   ],
   [
     'Accountability is shared.',
-    'Weekly reporting, data-triggered coaching sprints, a live Client Portal, and a replacement guarantee mean we stay accountable for what happens after deployment.',
+    'Weekly reporting, data-triggered coaching sprints, a live Client Portal, and a replacement guarantee mean we stay accountable for what happens after deployment - alongside you, every week.',
   ],
   [
     'The playbook is yours.',
-    'ICP definition, messaging, objection scripts, and sequence architecture are built during the engagement and delivered to you on exit.',
+    'ICP definition, messaging, objection scripts, and sequence architecture are built during the engagement and delivered to you on exit. The institutional knowledge stays inside your business permanently.',
   ],
 ]
 
@@ -363,8 +370,9 @@ const founders = [
     image: '/team/michael-adonteng.png',
     bio: [
       'Michael brings 18 years of B2B sales and leadership experience to Talvara. He has spent his career helping founders and revenue teams design go-to-market strategy, build outbound playbooks, sharpen sales EQ, and embed operating cadence that compounds over time.',
-      'As an advisor to startup executives across diverse regions and verticals, Michael specialises in scaling revenue and building high-performing teams - with a track record that includes GBP25M+ in influenced revenue, reduced SDR ramp times, stronger pipeline quality, and predictable forecasting. At Talvara, he leads client strategy and deployment.',
+      'As an advisor to startup executives across diverse regions and verticals, Michael specialises in scaling revenue and building high-performing teams - with a track record that includes $32M+ in influenced revenue, reduced SDR ramp times, stronger pipeline quality, and predictable forecasting. At Talvara, he leads client strategy and deployment - ensuring every engagement is accountable to outcomes, not just activity.',
     ],
+    linkedin: 'https://www.linkedin.com/in/michaeladonteng',
   },
   {
     name: 'Erica Franklin',
@@ -373,9 +381,10 @@ const founders = [
     image: '/team/erica-franklin.png',
     imageFit: 'contain',
     bio: [
-      'Erica brings over 15 years of experience across sales leadership, commercial education, and relationship-driven growth. She is the Chief Operating Officer of the Africa Sales Academy, the training infrastructure that powers Talvara\'s SDR pool.',
-      'Alongside ASA, Erica is the Founder of EVF Consulting and serves as Director of Sales at Sistas in Sales, a global community of over 10,000 women of colour focused on career growth and upskilling. At Talvara, she leads talent, training, and partnerships.',
+      "Erica brings over 15 years of experience across sales leadership, commercial education, and relationship-driven growth. She is the Chief Operating Officer of the Africa Sales Academy - the training infrastructure that powers Talvara's SDR pool - where she leads the design and delivery of the six-week structured commercial programme that every Talvara SDR completes before assessment.",
+      'Alongside her work at ASA, Erica is the Founder of EVF Consulting and serves as Director of Sales at Sistas in Sales, a global community of over 10,000 women of colour focused on career growth and upskilling. Named one of the 100 Powerful Women in Sales 2023 by TalentMatched and Women in Sales, Erica leads talent, training, and partnerships at Talvara - ensuring the platform delivers not just revenue, but lasting commercial capability that clients keep.',
     ],
+    linkedin: 'https://www.linkedin.com/in/erica-franklin',
   },
 ]
 
@@ -387,13 +396,13 @@ const legalPages = {
     subtitle:
       'How Talvara collects, uses, shares, and protects personal information from website visitors, prospects, clients, and business contacts.',
     notice:
-      'This policy is intended for Talvara website publishing. It should be reviewed by counsel before launch, especially once the form provider, analytics stack, hosting region, and contracting entity are confirmed.',
+      'This policy explains how Talvara handles personal information when you visit the website, contact us, book a call, or engage with our services.',
     sections: [
       {
         heading: '1. Who We Are',
         body: [
           'Talvara is a managed revenue platform that deploys pre-assessed SDRs to B2B startups through AI-powered matching and human-led delivery.',
-          'For privacy questions, contact us at hello@talvara.io.',
+          `For privacy questions, contact us at ${CONTACT_EMAIL}.`,
         ],
       },
       {
@@ -427,7 +436,7 @@ const legalPages = {
         heading: '5. Cookies and Analytics',
         body: [
           'The current website is designed as a marketing and enquiry site. If analytics, pixels, embedded media, or similar technologies are added, they may use cookies or comparable identifiers.',
-          'Strictly necessary cookies may be used to operate the website. Non-essential analytics or marketing cookies should only be enabled in line with applicable consent requirements and the cookie tools configured before launch.',
+          'Strictly necessary cookies may be used to operate the website. Non-essential analytics or marketing cookies are used only in line with applicable consent requirements.',
         ],
       },
       {
@@ -463,7 +472,7 @@ const legalPages = {
         heading: '10. Your Rights and Choices',
         body: [
           'Depending on where you live, you may have rights to access, correct, delete, restrict, object to, or receive a copy of your personal information. You may also have the right to withdraw consent where processing is based on consent.',
-          'To exercise a privacy right, contact hello@talvara.io. We may need to verify your identity before responding.',
+          `To exercise a privacy right, contact ${CONTACT_EMAIL}. We may need to verify your identity before responding.`,
           'You may unsubscribe from non-essential business communications by using the unsubscribe instructions where provided or by contacting us.',
         ],
       },
@@ -488,7 +497,7 @@ const legalPages = {
       {
         heading: '14. Contact',
         body: [
-          'Questions about this policy or Talvara privacy practices can be sent to hello@talvara.io.',
+          `Questions about this policy or Talvara privacy practices can be sent to ${CONTACT_EMAIL}.`,
         ],
       },
     ],
@@ -498,7 +507,7 @@ const legalPages = {
     subtitle:
       'The terms that govern use of the Talvara website and pre-contract interactions with Talvara.',
     notice:
-      'These terms cover the website and early business interactions. Talvara pilots, managed SDR deployments, pricing, service levels, data processing, confidentiality, and commercial obligations should be governed by a separate signed agreement or order form.',
+      'These terms cover the website and early business interactions. Talvara pilots, managed SDR deployments, pricing, service levels, data processing, confidentiality, and commercial obligations are governed by a separate signed agreement or order form.',
     sections: [
       {
         heading: '1. Acceptance of These Terms',
@@ -581,7 +590,7 @@ const legalPages = {
         heading: '12. Limitation of Liability',
         body: [
           'To the fullest extent permitted by law, Talvara will not be liable for indirect, incidental, special, consequential, exemplary, or punitive damages, or for lost profits, lost revenue, lost data, business interruption, or loss of goodwill arising from use of the website.',
-          'To the fullest extent permitted by law, Talvara total liability arising from website use will not exceed GBP100 or the minimum amount permitted by applicable law, whichever is greater.',
+          'To the fullest extent permitted by law, Talvara total liability arising from website use will not exceed $100 or the minimum amount permitted by applicable law, whichever is greater.',
         ],
       },
       {
@@ -600,14 +609,13 @@ const legalPages = {
       {
         heading: '15. Governing Law',
         body: [
-          'Unless a signed client agreement says otherwise, these website terms are intended to be governed by the laws of England and Wales, and the courts of England and Wales will have jurisdiction, subject to any mandatory rights that apply in your location.',
-          'This governing law clause should be confirmed by Talvara counsel before publishing.',
+          'Unless a signed client agreement says otherwise, these website terms are governed by the laws of England and Wales, and the courts of England and Wales will have jurisdiction, subject to any mandatory rights that apply in your location.',
         ],
       },
       {
         heading: '16. Contact',
         body: [
-          'Questions about these terms can be sent to hello@talvara.io.',
+          `Questions about these terms can be sent to ${CONTACT_EMAIL}.`,
         ],
       },
     ],
@@ -848,7 +856,7 @@ function Header({ path, menuOpen, setMenuOpen, isScrolled }) {
           aria-label="Talvara home"
           onClick={() => setMenuOpen(false)}
         >
-          <img className="brand-logo" src="/talvara-logo.png" alt="" aria-hidden="true" />
+          <img className="brand-logo" src="/talvara-logo.svg" alt="" aria-hidden="true" />
         </Link>
         <button
           className="menu-button"
@@ -892,7 +900,7 @@ function Footer() {
       <div className="footer-grid">
         <div>
           <Link href="/" className="footer-brand">
-            <img className="brand-logo footer-logo" src="/talvara-logo.png" alt="" aria-hidden="true" />
+            <img className="brand-logo footer-logo" src="/talvara-logo.svg" alt="" aria-hidden="true" />
           </Link>
           <p>Talent sourced across Africa. Active cohorts: Nigeria & Ghana.</p>
         </div>
@@ -913,7 +921,7 @@ function Footer() {
       </div>
       <div className="footer-bottom">
         <span>© {CURRENT_YEAR} Talvara. All rights reserved.</span>
-        <span>hello@talvara.io</span>
+        <span>{CONTACT_EMAIL}</span>
       </div>
     </footer>
   )
@@ -1055,7 +1063,7 @@ function LogoBar() {
       </div>
       <div className="logo-track" aria-label="Client and partner logos">
         {logos.map((logo) => (
-          <span className="wordmark logo-card" key={logo.name}>
+          <span className={`wordmark logo-card ${logo.invert ? 'logo-invert' : ''}`} key={logo.name}>
             <img src={logo.src} alt={logo.name} loading="lazy" />
           </span>
         ))}
@@ -1128,22 +1136,22 @@ function ProblemSection() {
 function PlatformOverview() {
   const entities = [
     {
-      title: 'Africa Sales Academy',
+      title: 'Africa Sales Academy - Step 01',
       subtitle: 'Talent sourcing and training arm',
       body: "Open applications across Africa. Candidates screened for commercial aptitude, communication, and coachability. Those who pass enter the six-week structured training programme. Roughly 25-35% don't advance to assessment. That's the filter - not a failure of the programme.",
       logo: '/logos/africa-sales-academy.png',
     },
     {
-      title: 'MySalesLMS',
+      title: 'MySalesLMS - Enabled by ASA',
       subtitle: 'Proprietary eLearning platform - built for ASA learners',
-      body: 'Not a third-party tool. Ours. MySalesLMS delivers the full six-week curriculum - prospecting, communication, objection handling, CRM fundamentals, and commercial thinking. Candidates learn at their own pace, tracked and measured throughout.',
+      body: 'Not a third-party tool. Ours. MySalesLMS delivers the full six-week curriculum - prospecting, communication, objection handling, CRM fundamentals, and commercial thinking. Candidates learn at their own pace, tracked and measured throughout. Trainers review and give feedback on every module.',
       logo: '/logos/mysaleslms-alt.png',
     },
     {
-      title: 'Talvara',
+      title: 'Talvara - Step 02 onwards',
       subtitle: 'The managed revenue platform - the investable asset',
-      body: 'The platform, the RRS IP, the performance data, the client relationships, the Client Portal, and the SDR Dashboard. Every SDR who reaches a client has passed through ASA, been trained on MySalesLMS, and cleared the Revenue Readiness Score.',
-      logo: '/talvara-logo.png',
+      body: 'The platform, the RRS IP, the performance data, the client relationships, the Client Portal, and the SDR Dashboard. Every SDR who reaches a client has passed through ASA, been trained on MySalesLMS, and cleared the Revenue Readiness Score. This is what grows, scales, and attracts investment.',
+      logo: '/talvara-logo.svg',
     },
   ]
 
@@ -1159,7 +1167,8 @@ function PlatformOverview() {
           distinct role. The Africa Sales Academy finds and trains the talent.
           MySalesLMS delivers the structured curriculum. Talvara deploys, manages,
           and stays accountable for results. The client only ever interacts with
-          Talvara.
+          Talvara. This is not an agency with a training partner. It is an
+          integrated platform with owned infrastructure underneath it.
         </SectionIntro>
         <div className="entity-grid">
           {entities.map((entity, index) => (
@@ -1188,30 +1197,31 @@ function PlatformOverview() {
   )
 }
 
-function RRSSection() {
+function RRSSection({
+  eyebrow = 'The Revenue Readiness Score - Talvara Core IP',
+  title = 'No SDR reaches a client without clearing the bar.',
+  platform = false,
+}) {
   return (
     <section className="section dark-section rrs-section" id="rrs">
       <div className="split-layout align-start">
         <SectionIntro
           dark
-          eyebrow="The Revenue Readiness Score - Talvara Core IP"
-          title="No SDR reaches a client without clearing the bar."
+          eyebrow={eyebrow}
+          title={title}
         >
-          The Revenue Readiness Score is Talvara's proprietary assessment
-          framework - five weighted commercial competency categories that every
-          ASA graduate must pass before entering the Talvara SDR pool. It is not
-          an interview. It is not a CV screen. It is a scored, structured
-          assessment that tells us - with data - whether a candidate is ready to
-          generate pipeline for your business.
+          {platform
+            ? "Every ASA graduate sits the Revenue Readiness Score - Talvara's proprietary assessment framework. Five weighted commercial competency categories, scored independently by our AI engine and reviewed by our team before any result is acted on. The score is shared with you at shortlist delivery alongside intro videos and sample outreach sequences. AI ranks. Humans decide."
+            : "The Revenue Readiness Score is Talvara's proprietary assessment framework - five weighted commercial competency categories that every ASA graduate must pass before entering the Talvara SDR pool. The score is shared with you at shortlist delivery alongside intro videos and sample outreach sequences, so your decision is grounded in evidence, not CV polish."}
         </SectionIntro>
         <div className="rrs-panel feature-card motion-card" data-reveal>
           <div className="rrs-summary">
             <span>Minimum deployment threshold</span>
             <strong>RRS 7.0+</strong>
             <p>
-              Overall &gt;= 7.0. No individual category below 6.0. Candidates who
-              don't clear the threshold don't enter the pool - regardless of how
-              well they performed in training.
+              Overall &gt;= 7.0. No individual category below 6.0. No exceptions.
+              Candidates who don't clear the threshold don't enter the pool -
+              regardless of how well they performed in training.
             </p>
           </div>
           {rrsAreas.map(([area, weight]) => (
@@ -1226,7 +1236,7 @@ function RRSSection() {
             </div>
           ))}
           <div className="threshold">
-            Overall &gt;= 7.0 - No individual category below 6.0. This bar does not move.
+            Overall &gt;= 7.0 - No individual category below 6.0 - No exceptions. This bar does not move.
           </div>
         </div>
       </div>
@@ -1254,7 +1264,7 @@ function HowPreview() {
     [
       '04',
       '7-Day Deployment',
-      'SDR privately briefed on your product, ICP, competitive landscape, tools, and KPIs. Prospect list reviewed before a single name is touched. Outbound live by day 12.',
+      'SDR privately briefed on your product, ICP, competitive landscape, tools, and KPIs. Setup and prospect review happen first; outbound goes live by Day 12.',
     ],
     [
       '05',
@@ -1282,7 +1292,6 @@ function HowPreview() {
               <h3>{title}</h3>
               <p>{body}</p>
             </div>
-            <span className="card-chevron" aria-hidden="true" />
           </Card>
         ))}
       </div>
@@ -1295,19 +1304,33 @@ function HowPreview() {
   )
 }
 
-function PortalShowcase() {
+function PortalShowcase({ platform = false }) {
   return (
     <section className="section">
       <div className="split-layout">
-        <SectionIntro
-          eyebrow="The Client Portal - Pipeline Intelligence"
-          title="Your pipeline. Live. Every day."
-        >
-          You don't wait until Monday to know what's happening. The Talvara Client
-          Portal gives you real-time visibility into your SDR's performance - calls
-          made, meetings booked, pipeline value attributed, and RR Score - from the
-          moment outbound starts.
-        </SectionIntro>
+        <div>
+          <SectionIntro
+            eyebrow={platform ? 'The Client Portal - Your Pipeline Intelligence View' : 'The Client Portal - Pipeline Intelligence'}
+            title={platform ? 'Real-time visibility. AI-generated insights. No chasing.' : 'Your pipeline. Live. Every day.'}
+          >
+            You don't wait until Monday to know what's happening. The Talvara Client
+            Portal gives you real-time visibility into your SDR's performance -
+            calls made, meetings booked, pipeline value attributed, and RR Score -
+            from the moment outbound starts.
+          </SectionIntro>
+          <div className="copy-stack portal-copy" data-reveal>
+            <p>
+              You can see whether an SDR is on track, watch emerging performance
+              signals, request additional SDRs, and monitor the route to Day 90
+              conversion.
+            </p>
+            <p>
+              The portal also surfaces AI-generated insights - which ICPs are
+              responding, where conversations stall, where messaging is improving,
+              and when coaching is needed.
+            </p>
+          </div>
+        </div>
         <div className="portal-mock feature-card motion-card magnetic-card" data-reveal>
           <div className="mock-header">
             <span>Talvara / Pipeline</span>
@@ -1316,7 +1339,7 @@ function PortalShowcase() {
           <div className="mock-kpis">
             <div><span>Calls</span><strong>312</strong></div>
             <div><span>Meetings</span><strong>18</strong></div>
-            <div><span>RR Score</span><strong>82</strong></div>
+            <div><span>RR Score</span><strong>8.2</strong></div>
           </div>
           <div className="mock-table">
             {['Amaka Okafor', 'Joy Essien', 'Ruby Boateng'].map((name, i) => (
@@ -1357,15 +1380,27 @@ function SDRDashboardShowcase() {
             ))}
           </ul>
         </div>
-        <SectionIntro
-          eyebrow="The SDR Dashboard - Their Daily Command Centre"
-          title="Your SDR knows exactly what to do. Every day."
-        >
-          Every deployed Talvara SDR operates from their own command centre - a
-          daily dashboard that tracks tasks, KPIs, prospect queue, and RR Score in
-          real time. There is no ambiguity about what needs to happen today. No
-          slippage between sessions. No chasing for activity logs.
-        </SectionIntro>
+        <div>
+          <SectionIntro
+            eyebrow="The SDR Dashboard - Their Daily Command Centre"
+            title="Your SDR knows exactly what to do. Every single day."
+          >
+            Every deployed Talvara SDR operates from their own command centre - a
+            daily dashboard that tracks tasks, KPIs, prospect queue, and RR Score in
+            real time.
+          </SectionIntro>
+          <div className="copy-stack portal-copy" data-reveal>
+            <p>
+              There is no ambiguity about what needs to happen today. No slippage
+              between sessions. No chasing for activity logs.
+            </p>
+            <p>
+              The dashboard connects performance expectations, daily execution, and
+              coaching triggers in one place - so the SDR knows what to do, Talvara
+              knows when to intervene, and you see the output.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   )
@@ -1418,7 +1453,11 @@ function PartnersSection() {
       <div className="partner-grid">
         {partners.map(([name, description, logo]) => (
           <Card as="article" className="partner-card compact-list-card motion-card" key={name} data-reveal>
-            <span className="partner-logo">
+            <span
+              className={`partner-logo ${
+                logo.includes('talentmatched') || logo.includes('self-science-lab') ? 'partner-logo-invert' : ''
+              }`}
+            >
               <img src={logo} alt={`${name} logo`} loading="lazy" />
             </span>
             <div>
@@ -1441,7 +1480,9 @@ function AIHumanSection() {
           eyebrow="Our Approach"
           title="The AI SDR failed. The human layer is the scarce resource."
         >
-          The market proved what experienced sales leaders already knew - objection
+          The most-funded autonomous AI SDR raised $74 million. It could not
+          retain its own customers and reverted to a hybrid model by 2026. The
+          market proved what experienced sales leaders already knew - objection
           handling, trust, contextual reading, and relationship building cannot be
           automated. They require human judgment.
         </SectionIntro>
@@ -1470,7 +1511,8 @@ function PilotCTA() {
         <p>
           $7,500 total. AI-matched candidates, human-managed delivery. Live Client
           Portal from day one. Weekly reporting from day 12. Free replacement
-          guarantee. At Day 90 - convert or walk away.
+          guarantee. At Day 90 - convert or walk away. The data makes the decision,
+          not a sales pitch.
         </p>
         <ButtonRow>
           <CTAButton>Book a Discovery Call</CTAButton>
@@ -1485,15 +1527,15 @@ function HowItWorks() {
   const entities = [
     [
       'Africa Sales Academy - Step 01',
-      "The talent sourcing and training arm. Separate entity. Its own brand, its own mission - creating structured commercial career pathways across Africa. ASA feeds Talvara but is not owned by Talvara. Open applications across Africa. Candidates screened for commercial aptitude, communication, and coachability before entering the programme.",
+      "The talent sourcing and training arm. Separate entity. Its own brand, its own mission - creating structured commercial career pathways across Africa. ASA feeds Talvara but is not owned by Talvara. Open applications across Africa. Candidates screened for commercial aptitude, communication, and coachability before entering the programme. Roughly 25-35% don't advance to assessment. That's the filter - not a failure of the programme.",
     ],
     [
       'MySalesLMS - Enabled by ASA',
-      "Talvara's proprietary eLearning platform - built specifically for ASA learners. Not a third-party tool. Ours. MySalesLMS delivers the full six-week curriculum: prospecting methodology, communication frameworks, objection handling, CRM fundamentals, and commercial thinking for B2B environments.",
+      "Talvara's proprietary eLearning platform - built specifically for ASA learners. Not a third-party tool. Ours. MySalesLMS delivers the full six-week curriculum: prospecting methodology, communication frameworks, objection handling, CRM fundamentals, and commercial thinking for B2B environments. Candidates learn at their own pace, tracked and measured throughout. Trainers review and give feedback on every module.",
     ],
     [
       'Talvara - Step 02 onwards',
-      'The managed revenue platform - the investable asset. The platform, the RRS IP, the performance data, the client relationships, the Client Portal, and the SDR Dashboard. Every SDR who reaches a client has passed through ASA, been trained on MySalesLMS, and cleared the Revenue Readiness Score.',
+      'The managed revenue platform - the investable asset. The platform, the RRS IP, the performance data, the client relationships, the Client Portal, and the SDR Dashboard. Every SDR who reaches a client has passed through ASA, been trained on MySalesLMS, and cleared the Revenue Readiness Score. This is what grows, scales, and attracts investment.',
     ],
   ]
   const curriculum = [
@@ -1509,8 +1551,8 @@ function HowItWorks() {
       'Your requirements are mapped across 14 criteria - ICP, market, buyer profile, communication style, tools, urgency, and more. Our AI matching engine cross-references the full assessed SDR pool and surfaces the strongest candidates. Our team reviews every result against your discovery call notes before 3-5 best-fit candidates are presented.',
     ],
     [
-      'Step 04 - 7-Day Deployment',
-      'Contract signed. The SDR receives a private briefing on your product, ICP, competitive landscape, buyer personas, cultural nuances, and tools setup. The prospect list is reviewed by Talvara before a single name is touched. Outbound live by day 12.',
+      'Step 04 - Deployment Setup + Outbound Launch',
+      'Contract signed. The SDR receives a private briefing on your product, ICP, competitive landscape, buyer personas, cultural nuances, and tools setup. Talvara reviews the prospect list before a single name is touched; outbound goes live by Day 12.',
     ],
     [
       'Step 05 - Performance Layer + Client Portal',
@@ -1535,7 +1577,8 @@ function HowItWorks() {
           Talvara is the client-facing layer of a three-entity infrastructure -
           each with a distinct role, each essential to the outcome. Understanding
           how they connect explains why Talvara can make guarantees that a
-          traditional agency cannot.
+          traditional agency cannot. This is not an agency with a training partner.
+          It is an integrated platform with owned infrastructure underneath it.
         </SectionIntro>
         <div className="entity-grid page-entity-grid">
           {entities.map(([title, body], index) => (
@@ -1557,7 +1600,8 @@ function HowItWorks() {
             programme is delivered through MySalesLMS - Talvara's proprietary
             eLearning platform - with live sessions, recorded roleplays, written
             exercises, and daily activity logs. Trainers review and give feedback
-            on every module.
+            on every module. Only candidates who demonstrate commercial readiness
+            progress to the Revenue Readiness Score.
           </SectionIntro>
           <Card className="curriculum-card feature-card motion-card" data-reveal>
             <h3>Curriculum</h3>
@@ -1574,7 +1618,11 @@ function HowItWorks() {
           </Card>
         </div>
       </section>
-      <RRSSection />
+      <RRSSection
+        eyebrow="Step 02 - Revenue Readiness Score - Talvara Core IP"
+        title="The assessment that separates readiness from potential."
+        platform
+      />
       <section className="section" id="process">
         <SectionIntro
           align="center"
@@ -1589,12 +1637,11 @@ function HowItWorks() {
                 <h3>{title}</h3>
                 <p>{body}</p>
               </div>
-              <span className="card-chevron" aria-hidden="true" />
             </Card>
           ))}
         </div>
       </section>
-      <PortalShowcase />
+      <PortalShowcase platform />
       <SDRDashboardShowcase />
       <section className="section cream">
         <SectionIntro
@@ -1761,7 +1808,7 @@ function About() {
                 {founder.bio.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
-                <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
+                <a href={founder.linkedin} target="_blank" rel="noreferrer">
                   LinkedIn
                 </a>
               </div>
@@ -1805,7 +1852,7 @@ function About() {
         <SectionIntro
           align="center"
           eyebrow="SDR Cohort Gallery"
-          title="Seventeen assessed SDRs across Cohort 1 and Cohort 2."
+          title="Assessed SDRs across Cohort 1 and Cohort 2."
         />
         <div className="profile-grid">
           {cohort.map(([name, score]) => (
@@ -1863,7 +1910,7 @@ function InfrastructureVisual() {
     {
       name: 'Talvara',
       label: 'Deploy + manage',
-      logo: '/talvara-logo.png',
+      logo: '/talvara-logo.svg',
     },
   ]
 
@@ -1904,7 +1951,7 @@ function PricingSignalVisual() {
 }
 
 function CohortSignalVisual() {
-  const featured = ['Joy E.', 'Kwesi D.', 'Ruby B.', 'Alice O.', 'Mark Q.']
+  const featured = ['Joy E.', 'Kwesi D.', 'Faustina A.', 'Alice O.', 'Mark Q.']
 
   return (
     <div className="native-visual cohort-signal-visual" aria-label="Assessed SDR talent pool">
@@ -1919,7 +1966,7 @@ function CohortSignalVisual() {
         ))}
       </div>
       <div className="cohort-signal-copy">
-        <strong>17 assessed SDRs</strong>
+        <strong>Assessed SDRs</strong>
         <span>Across Cohort 1 and Cohort 2</span>
       </div>
       <div className="cohort-signal-meta">
@@ -1982,7 +2029,7 @@ function Contact() {
     <>
       <PageHero
         eyebrow="Get In Touch"
-        title="A real conversation. No forms. No sequences."
+        title="A real conversation. No sequences."
         subtitle="Every enquiry gets a personal response within 24 hours - from a person, not an automated system. Tell us your pipeline problem. We'll tell you honestly whether Talvara is the right fit."
         visual={<ContactSignalVisual />}
       />
@@ -2056,24 +2103,25 @@ function Contact() {
             )}
             {formStatus === 'error' && (
               <p className="form-status form-status-error full" role="alert">
-                The form could not send. Please email hello@talvara.io or book a discovery call.
+                The form could not send. Please email {CONTACT_EMAIL} or book a discovery call.
               </p>
             )}
             <Button className="button primary full" type="submit" disabled={formStatus === 'sending'}>
-              {formStatus === 'sending' ? 'Sending...' : 'Send enquiry'}
+              {formStatus === 'sending' ? 'Sending...' : 'Send Enquiry ->'}
             </Button>
           </form>
           <Card as="aside" className="call-card cta-card conversion-card motion-card" data-reveal>
             <Eyebrow>Prefer a call?</Eyebrow>
             <h2>Book a Discovery Call</h2>
             <p>
-              Contact: hello@talvara.io. We respond within 24 hours on business days.
+              Contact: {CONTACT_EMAIL}. We respond within 24 hours on business days.
             </p>
             <ul className="call-expectations">
               <li>Your current pipeline situation and what's already been tried</li>
               <li>Your ICP, outbound targets, and what a win looks like</li>
               <li>An honest assessment of whether Talvara fits right now</li>
               <li>Whether the pilot or another offer is the right starting point</li>
+              <li>Timeline, pricing, and next steps - all answered in the call</li>
             </ul>
             <p>
               If Talvara isn't the right fit right now, we'll say so - and tell you
