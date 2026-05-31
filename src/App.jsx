@@ -117,6 +117,24 @@ const testimonials = [
     logo: 'BG',
     image: '/testimonials/eli-goldberg.jpg',
   },
+  {
+    quote:
+      "In a market where most business is won through referrals, having a structured methodology and process to generate repeatable revenue alongside that is something I genuinely valued. Great team, great approach - I'd have no hesitation recommending them.",
+    name: 'Tom Wood',
+    title: 'CEO',
+    company: 'TalentMatched',
+    logo: 'TM',
+    image: '/testimonials/tom-wood.png',
+  },
+  {
+    quote:
+      'Michael provided practical, strategic guidance that helped us sharpen our commercial positioning and approach to the UK market. His insights around value-led messaging, pipeline discipline, and structuring our sales playbook were particularly valuable. The sessions were focused, actionable, and immediately applicable. I would highly recommend working with him for organisations looking to strengthen their revenue strategy and execution.',
+    name: 'Ryan Simons',
+    title: 'CEO / Founder',
+    company: 'DenArthur Analytics',
+    logo: 'DA',
+    image: '/testimonials/ryan-simons.jpg',
+  },
 ]
 
 const rrsAreas = [
@@ -163,6 +181,8 @@ const sdrHeadshots = {
   'Rebecca E.': '/sdr-headshots/rebecca-e.jpg',
   'Maclean S.': '/sdr-headshots/maclean-s.png',
   'Priscilla K.': '/sdr-headshots/priscilla-k.jpeg',
+  'Godfred A.': '/sdr-headshots/godfred-a.jpg',
+  'Ruby B.': '/sdr-headshots/ruby-b.jpg',
 }
 
 const sdrHeadshotPositions = {
@@ -181,6 +201,8 @@ const sdrHeadshotPositions = {
   'Rebecca E.': '50% 16%',
   'Sekinat S.': '48% 18%',
   'Tariq N.': '50% 16%',
+  'Godfred A.': '50% 18%',
+  'Ruby B.': '50% 20%',
 }
 
 const pricingOffers = [
@@ -649,14 +671,6 @@ function goTo(href) {
   }
 }
 
-function statMotion(value) {
-  if (value === '7 days') return { target: 7, suffix: ' days' }
-  if (value === 'Day 12') return { target: 12, prefix: 'Day ' }
-  if (value === '$7,500') return { target: 7500, prefix: '$' }
-  if (value === 'RRS 7.0+') return { target: 7, prefix: 'RRS ', suffix: '.0+' }
-  return null
-}
-
 function animateCount(el, duration = 1200) {
   if (el.dataset.countAnimated === 'true') return
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
@@ -1029,27 +1043,13 @@ function Home() {
 function StatBar() {
   return (
     <section className="stat-bar" aria-label="Talvara platform stats">
-      {stats.map(([value, label]) => {
-        const motion = statMotion(value)
-
-        return (
+      {stats.map(([value, label]) => (
         <div className="stat-card metric-card motion-card" key={value} data-reveal>
-          <strong
-            {...(motion
-              ? {
-                  'data-count-target': motion.target,
-                  'data-count-prefix': motion.prefix || '',
-                  'data-count-suffix': motion.suffix || '',
-                }
-              : {})}
-          >
-            {value}
-          </strong>
+          <strong>{value}</strong>
           <span>{label}</span>
           <em aria-hidden="true" />
         </div>
-        )
-      })}
+      ))}
     </section>
   )
 }
@@ -1407,6 +1407,8 @@ function SDRDashboardShowcase() {
 }
 
 function Testimonials() {
+  const scrollingTestimonials = [...testimonials, ...testimonials]
+
   return (
     <section className="section cream testimonial-section">
       <div className="review-row" data-reveal>
@@ -1414,18 +1416,24 @@ function Testimonials() {
         <strong>Results that speak for themselves.</strong>
       </div>
       <SectionIntro align="center" eyebrow="What Our Clients Say" title="Results that speak for themselves." />
-      <div className="testimonial-grid">
-        {testimonials.map((item, index) => (
+      <div className="testimonial-marquee" aria-label="Client testimonials">
+        <div className="testimonial-track">
+        {scrollingTestimonials.map((item, index) => (
           <Card
             as="article"
             className={`testimonial quote-card motion-card ${index === 0 ? 'featured' : ''}`}
-            key={item.name}
+            key={`${item.name}-${index}`}
             data-reveal
+            aria-hidden={index >= testimonials.length ? 'true' : undefined}
           >
             <span className="quote-mark">"</span>
             <p>{item.quote}</p>
             <div className="attribution">
-              <img className="testimonial-avatar" src={item.image} alt={`${item.name} profile`} loading="lazy" />
+              {item.image ? (
+                <img className="testimonial-avatar" src={item.image} alt={`${item.name} profile`} loading="lazy" />
+              ) : (
+                <span className="mini-logo" aria-hidden="true">{item.logo}</span>
+              )}
               <div>
                 <strong>{item.name}</strong>
                 <span>{item.title} - {item.company}</span>
@@ -1433,6 +1441,7 @@ function Testimonials() {
             </div>
           </Card>
         ))}
+        </div>
       </div>
     </section>
   )
