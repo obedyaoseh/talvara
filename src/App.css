@@ -7822,3 +7822,205 @@ h3[data-word-reveal],
     overflow-wrap: anywhere;
   }
 }
+
+/* Mobile polish pass: remove ornamental header rules and give RRS a deliberate phone layout. */
+@media (max-width: 768px) {
+  .eyebrow::before,
+  .hero-copy::before,
+  .hero-copy .eyebrow::before,
+  .page-hero .eyebrow::before,
+  .section-intro .eyebrow::before {
+    display: none !important;
+    content: none !important;
+  }
+
+  .eyebrow,
+  .hero-copy .eyebrow,
+  .page-hero .eyebrow,
+  .section-intro .eyebrow,
+  .section-intro.center .eyebrow {
+    width: fit-content;
+    max-width: min(100%, 320px) !important;
+    justify-content: center !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    padding-left: 0 !important;
+    text-align: center !important;
+  }
+
+  .section-intro,
+  .section-intro.center,
+  .proof-wrap,
+  .cta-band,
+  .mission-copy {
+    text-align: center !important;
+  }
+
+  .section-intro h2,
+  .section-intro.center h2,
+  .section-intro p,
+  .section-intro.center p,
+  .proof-wrap h2,
+  .proof-wrap p,
+  .cta-band h2,
+  .cta-band p,
+  .mission-copy h2,
+  .mission-copy p {
+    margin-right: auto !important;
+    margin-left: auto !important;
+    text-align: center !important;
+  }
+
+  .animations-ready .section-intro .eyebrow,
+  .animations-ready .section-intro p,
+  .animations-ready .page-hero .eyebrow,
+  .animations-ready .page-hero p {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .rrs-section {
+    padding-block: 60px !important;
+  }
+
+  .rrs-section .split-layout {
+    width: min(100%, calc(100vw - 28px)) !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    align-items: stretch !important;
+  }
+
+  .rrs-section .section-intro,
+  .rrs-section .section-intro.dark {
+    width: min(100%, 340px) !important;
+    max-width: 340px !important;
+    justify-self: center;
+  }
+
+  .rrs-section .section-intro h2 {
+    max-width: 335px !important;
+    font-size: clamp(30px, 8vw, 36px) !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.025em !important;
+  }
+
+  .rrs-section .section-intro p {
+    max-width: 330px !important;
+    color: rgba(250, 247, 242, 0.8) !important;
+    font-size: 15px !important;
+    line-height: 1.62 !important;
+  }
+
+  .rrs-section .rrs-panel {
+    width: 100% !important;
+    max-width: 360px !important;
+    justify-self: center;
+    padding: 18px !important;
+    border-color: rgba(250, 247, 242, 0.14) !important;
+    background: rgba(250, 247, 242, 0.07) !important;
+    box-shadow: none !important;
+  }
+
+  .rrs-summary {
+    margin-bottom: 20px !important;
+    padding: 18px !important;
+    text-align: center !important;
+  }
+
+  .rrs-summary span {
+    font-size: 10px !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.09em !important;
+  }
+
+  .rrs-summary strong {
+    margin-top: 8px !important;
+    font-size: clamp(40px, 12vw, 52px) !important;
+    line-height: 0.95 !important;
+    white-space: nowrap !important;
+  }
+
+  .rrs-summary p {
+    max-width: 29ch !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    text-align: center !important;
+  }
+
+  .rrs-bar {
+    margin-bottom: 16px !important;
+  }
+
+  .rrs-bar > div:first-child {
+    gap: 14px !important;
+    align-items: baseline !important;
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+  }
+
+  .rrs-bar strong {
+    flex: 0 0 auto;
+    font-size: 11px !important;
+  }
+
+  .bar-track {
+    height: 7px !important;
+    margin-top: 8px !important;
+  }
+
+  .threshold {
+    margin-top: 20px !important;
+    padding: 14px !important;
+    font-size: 10px !important;
+    line-height: 1.45 !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .rrs-section .section-intro,
+  .rrs-section .section-intro.dark,
+  .rrs-section .rrs-panel {
+    max-width: calc(100vw - 28px) !important;
+  }
+
+  .rrs-section .section-intro h2 {
+    max-width: 315px !important;
+    font-size: 30px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-bar {
+    width: min(100%, calc(100vw - 28px)) !important;
+    grid-template-columns: 1fr !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    transform: none !important;
+  }
+
+  .stat-bar div {
+    min-height: 88px !important;
+    padding: 18px 20px !important;
+  }
+
+  .stat-bar strong {
+    font-size: 31px !important;
+    line-height: 1 !important;
+  }
+
+  .stat-bar span {
+    max-width: 30ch !important;
+    font-size: 10px !important;
+    line-height: 1.35 !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+  }
+}

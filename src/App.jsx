@@ -49,7 +49,7 @@ const navLinks = [
 
 const stats = [
   ['7 days', 'Contract signed to SDR deployed'],
-  ['Day 12', 'Outbound live - calls, email, LinkedIn'],
+  ['Day 12', 'Outbound live · calls, email, LinkedIn'],
   ['$7,500', 'Total cost of a 90-day managed pilot'],
   ['RRS 7.0+', 'Minimum score before any deployment'],
 ]
@@ -942,7 +942,9 @@ function Footer() {
 }
 
 function Eyebrow({ children, dark = false }) {
-  return <p className={`eyebrow ${dark ? 'on-dark' : ''}`}>{children}</p>
+  const label = typeof children === 'string' ? children.replaceAll(' - ', ' · ') : children
+
+  return <p className={`eyebrow ${dark ? 'on-dark' : ''}`}>{label}</p>
 }
 
 function ButtonRow({ children }) {
