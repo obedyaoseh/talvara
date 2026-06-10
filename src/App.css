@@ -1007,8 +1007,7 @@ main {
   padding: 22px 24px;
   background: rgba(250, 247, 242, 0.74);
   color: var(--talvara-dark);
-  filter: grayscale(100%);
-  opacity: 0.72;
+  opacity: 1;
   font-family: var(--sans);
   font-size: 0.96rem;
   font-weight: 700;
@@ -1028,16 +1027,15 @@ main {
 }
 
 .logo-invert img {
-  filter: invert(1) grayscale(100%) contrast(1.12);
+  filter: none;
 }
 
 .wordmark:hover {
   opacity: 1;
-  filter: grayscale(0%);
 }
 
 .logo-invert:hover img {
-  filter: invert(1) grayscale(0%) contrast(1.12);
+  filter: none;
 }
 
 .section {
@@ -6397,11 +6395,11 @@ h3[data-word-reveal],
   max-width: 82%;
   max-height: 58px;
   object-fit: contain;
-  filter: grayscale(100%);
+  filter: none;
 }
 
 .partner-logo-invert img {
-  filter: invert(1) grayscale(100%) contrast(1.12);
+  filter: none;
 }
 
 .partner-card h3,

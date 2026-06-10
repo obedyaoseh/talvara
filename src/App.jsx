@@ -40,7 +40,7 @@ const outboundSituationOptions = [
 ]
 
 const navLinks = [
-  { label: 'How It Works', href: '/how-it-works#process' },
+  { label: 'How It Works', href: '/how-it-works' },
   { label: 'The Platform', href: '/how-it-works' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'About', href: '/about' },
@@ -163,11 +163,13 @@ const cohort = [
   ['Priscilla K.', '7.5'],
   ['Godfred A.', '7.0'],
   ['Ruby B.', '7.0'],
+  ['Esther S.', '7.2'],
+  ['Michaela', '7.4'],
 ]
 
 const sdrHeadshots = {
   'Sekinat S.': '/sdr-headshots/sekinat-s.jpeg',
-  'Alice O.': '/sdr-headshots/alice-o.jpg',
+  'Alice O.': '/sdr-headshots/alice-o.png',
   'Mark Q.': '/sdr-headshots/mark-q.png',
   'Faustina A.': '/sdr-headshots/faustina-a.jpg',
   'Kwesi D.': '/sdr-headshots/kwesi-d.jpeg',
@@ -175,7 +177,7 @@ const sdrHeadshots = {
   'Tariq N.': '/sdr-headshots/tariq-n.jpeg',
   'Joy E.': '/sdr-headshots/joy-e.jpg',
   'Eva D.': '/sdr-headshots/eva-d.jpeg',
-  'Kennedy K.': '/sdr-headshots/kennedy-k.jpeg',
+  'Kennedy K.': '/sdr-headshots/kennedy-k.jpg',
   'Forster E.': '/sdr-headshots/forster-e.jpg',
   'Priscilla N.': '/sdr-headshots/priscilla-n.jpg',
   'Rebecca E.': '/sdr-headshots/rebecca-e.jpg',
@@ -183,6 +185,8 @@ const sdrHeadshots = {
   'Priscilla K.': '/sdr-headshots/priscilla-k.jpeg',
   'Godfred A.': '/sdr-headshots/godfred-a.jpg',
   'Ruby B.': '/sdr-headshots/ruby-b.jpg',
+  'Esther S.': '/sdr-headshots/esther-s.jpeg',
+  'Michaela': '/sdr-headshots/michaela.jpg',
 }
 
 const sdrHeadshotPositions = {
@@ -203,6 +207,8 @@ const sdrHeadshotPositions = {
   'Tariq N.': '50% 16%',
   'Godfred A.': '50% 18%',
   'Ruby B.': '50% 20%',
+  'Esther S.': '50% 18%',
+  'Michaela': '50% 18%',
 }
 
 const pricingOffers = [
