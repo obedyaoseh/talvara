@@ -1027,7 +1027,7 @@ main {
 }
 
 .logo-invert img {
-  filter: none;
+  filter: brightness(0);
 }
 
 .wordmark:hover {
@@ -1035,7 +1035,7 @@ main {
 }
 
 .logo-invert:hover img {
-  filter: none;
+  filter: brightness(0);
 }
 
 .section {
@@ -6399,7 +6399,7 @@ h3[data-word-reveal],
 }
 
 .partner-logo-invert img {
-  filter: none;
+  filter: brightness(0);
 }
 
 .partner-card h3,
