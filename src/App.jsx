@@ -414,6 +414,28 @@ const founders = [
     ],
     linkedin: 'https://www.linkedin.com/in/erica-franklin',
   },
+  {
+    name: 'Name TBC',
+    title: 'CTO',
+    initials: 'CTO',
+    image: '',
+    imageFit: 'cover',
+    bio: [
+      'Bio coming soon.',
+    ],
+    linkedin: '',
+  },
+  {
+    name: 'René Carayol MBE',
+    title: 'Strategic Advisor — Leadership & Culture',
+    initials: 'RC',
+    image: '/team/rene-carayol.png',
+    imageFit: 'cover',
+    bio: [
+      '30+ years coaching FTSE 100 / Fortune 500 CEOs. Board: PepsiCo · IPC Media · Marks & Spencer. His networks and counsel accelerate Talvara into institutional rooms.',
+    ],
+    linkedin: 'https://www.linkedin.com/in/renecarayol',
+  },
 ]
 
 const legalUpdated = 'May 17, 2026'
@@ -1825,9 +1847,11 @@ function About() {
                 {founder.bio.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
-                <a href={founder.linkedin} target="_blank" rel="noreferrer">
-                  LinkedIn
-                </a>
+                {founder.linkedin && (
+                  <a href={founder.linkedin} target="_blank" rel="noreferrer">
+                    LinkedIn
+                  </a>
+                )}
               </div>
             </Card>
           ))}
