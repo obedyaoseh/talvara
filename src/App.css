@@ -1960,6 +1960,32 @@ main {
   font-weight: 700;
 }
 
+.founder-bio {
+  max-height: 160px;
+  overflow-y: auto;
+  margin-top: 14px;
+  padding-right: 12px;
+}
+
+/* Custom scrollbar styling for founder-bio */
+.founder-bio::-webkit-scrollbar {
+  width: 4px;
+}
+
+.founder-bio::-webkit-scrollbar-track {
+  background: rgba(26, 23, 20, 0.05);
+  border-radius: 999px;
+}
+
+.founder-bio::-webkit-scrollbar-thumb {
+  background: var(--talvara-gold);
+  border-radius: 999px;
+}
+
+.founder-bio::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-hover);
+}
+
 .contact-grid {
   grid-template-columns: 1.2fr 0.8fr;
   align-items: start;
@@ -4572,8 +4598,7 @@ textarea:focus {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
-.testimonial-grid,
-.founder-grid {
+.testimonial-grid {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 

@@ -1844,9 +1844,11 @@ function About() {
               <div>
                 <h3>{founder.name}</h3>
                 <span>{founder.title}</span>
-                {founder.bio.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
+                <div className="founder-bio">
+                  {founder.bio.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
                 {founder.linkedin && (
                   <a href={founder.linkedin} target="_blank" rel="noreferrer">
                     LinkedIn
