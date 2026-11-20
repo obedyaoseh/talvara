@@ -6,6 +6,7 @@ import { Card } from './components/ui/card'
 import { Input } from './components/ui/input'
 import { Select } from './components/ui/select'
 import { Textarea } from './components/ui/textarea'
+import { getPageMeta, normalisePath, pageMeta, SITE_URL } from './pageMeta'
 import './App.css'
 
 const CALENDLY_URL = 'https://calendly.com/talvara'
@@ -97,7 +98,7 @@ const testimonials = [
     title: 'Associate Programme Officer, Tech Sector Development',
     company: 'International Trade Centre (UN ITC)',
     logo: 'ITC',
-    image: '/testimonials/milou-van-bruggen.jpg',
+    image: '/testimonials/milou-van-bruggen.webp',
   },
   {
     quote:
@@ -106,7 +107,7 @@ const testimonials = [
     title: 'Portfolio Manager',
     company: 'United Nations ITC',
     logo: 'UN ITC',
-    image: '/testimonials/haifa-ben-salem.jpg',
+    image: '/testimonials/haifa-ben-salem.webp',
   },
   {
     quote:
@@ -115,7 +116,7 @@ const testimonials = [
     title: 'Head of Battleground',
     company: 'UK & EMEA',
     logo: 'BG',
-    image: '/testimonials/eli-goldberg.jpg',
+    image: '/testimonials/eli-goldberg.webp',
   },
   {
     quote:
@@ -124,7 +125,7 @@ const testimonials = [
     title: 'CEO',
     company: 'TalentMatched',
     logo: 'TM',
-    image: '/testimonials/tom-wood.png',
+    image: '/testimonials/tom-wood.webp',
   },
   {
     quote:
@@ -133,7 +134,7 @@ const testimonials = [
     title: 'CEO / Founder',
     company: 'DenArthur Analytics',
     logo: 'DA',
-    image: '/testimonials/ryan-simons.jpg',
+    image: '/testimonials/ryan-simons.webp',
   },
 ]
 
@@ -168,25 +169,25 @@ const cohort = [
 ]
 
 const sdrHeadshots = {
-  'Sekinat S.': '/sdr-headshots/sekinat-s.jpeg',
-  'Alice O.': '/sdr-headshots/alice-o.png',
-  'Mark Q.': '/sdr-headshots/mark-q.png',
-  'Faustina A.': '/sdr-headshots/faustina-a.jpg',
-  'Kwesi D.': '/sdr-headshots/kwesi-d.jpeg',
-  'Cyril M.': '/sdr-headshots/cyril-m.jpeg',
-  'Tariq N.': '/sdr-headshots/tariq-n.jpeg',
-  'Joy E.': '/sdr-headshots/joy-e.jpg',
-  'Eva D.': '/sdr-headshots/eva-d.jpeg',
-  'Kennedy K.': '/sdr-headshots/kennedy-k.jpg',
-  'Forster E.': '/sdr-headshots/forster-e.jpg',
-  'Priscilla N.': '/sdr-headshots/priscilla-n.jpg',
-  'Rebecca E.': '/sdr-headshots/rebecca-e.jpg',
-  'Maclean S.': '/sdr-headshots/maclean-s.png',
-  'Priscilla K.': '/sdr-headshots/priscilla-k.jpeg',
-  'Godfred A.': '/sdr-headshots/godfred-a.jpg',
-  'Ruby B.': '/sdr-headshots/ruby-b.jpg',
-  'Esther S.': '/sdr-headshots/esther-s.jpeg',
-  'Michaela': '/sdr-headshots/michaela.jpg',
+  'Sekinat S.': '/sdr-headshots/sekinat-s.webp',
+  'Alice O.': '/sdr-headshots/alice-o.webp',
+  'Mark Q.': '/sdr-headshots/mark-q.webp',
+  'Faustina A.': '/sdr-headshots/faustina-a.webp',
+  'Kwesi D.': '/sdr-headshots/kwesi-d.webp',
+  'Cyril M.': '/sdr-headshots/cyril-m.webp',
+  'Tariq N.': '/sdr-headshots/tariq-n.webp',
+  'Joy E.': '/sdr-headshots/joy-e.webp',
+  'Eva D.': '/sdr-headshots/eva-d.webp',
+  'Kennedy K.': '/sdr-headshots/kennedy-k.webp',
+  'Forster E.': '/sdr-headshots/forster-e.webp',
+  'Priscilla N.': '/sdr-headshots/priscilla-n.webp',
+  'Rebecca E.': '/sdr-headshots/rebecca-e.webp',
+  'Maclean S.': '/sdr-headshots/maclean-s.webp',
+  'Priscilla K.': '/sdr-headshots/priscilla-k.webp',
+  'Godfred A.': '/sdr-headshots/godfred-a.webp',
+  'Ruby B.': '/sdr-headshots/ruby-b.webp',
+  'Esther S.': '/sdr-headshots/esther-s.webp',
+  'Michaela': '/sdr-headshots/michaela.webp',
 }
 
 const sdrHeadshotPositions = {
@@ -245,10 +246,12 @@ const pricingOffers = [
   {
     eyebrow: 'Offer 04 - Most Popular',
     title: '90-Day Pilot',
-    price: '$2,500/mo',
-    meta: '$7,500 total - then $3,375/mo min 1-year',
+    price: '$7,500 for 90 days',
+    meta: 'billed $2,500/mo for 3 months',
     body:
-      'The full Talvara product - AI matching, RRS assessment, Client Portal access, human-managed deployment - at 80% of the ongoing monthly rate. Weekly reports. Day 60 mid-review. Free replacement guarantee. At Day 90, convert or exit cleanly. Pod pilot: $7,500/mo - $22,500 total.',
+      'The full Talvara product - AI matching, RRS assessment, Client Portal access, human-managed deployment - at 80% of the ongoing monthly rate. Weekly reports. Day 60 mid-review. Free replacement guarantee. Pod pilot: $7,500/mo - $22,500 total.',
+    dayNinety:
+      'At Day 90 you choose. Exit and owe nothing more, or convert to Managed SDR at $3,375/mo with a minimum 1-year term.',
     bestFor:
       "You're not hiring someone and hoping it works. You're buying 90 days of AI-matched, human-managed outbound - with a live Client Portal, weekly reports, coaching sprints, and a replacement guarantee - for $7,500 total. Less than a month of a US SDR's fully loaded cost.",
     featured: true,
@@ -301,7 +304,7 @@ const pricingFaqs = [
   ],
   [
     'Is there a long-term contract?',
-    'The pilot is 3 months at $2,500/mo ($7,500 total). After that, minimum 1-year term at $3,375/mo.',
+    'Not for the pilot. It is $7,500 for 90 days, billed at $2,500/mo. At Day 90 you can exit and owe nothing more. If you convert, Managed SDR is $3,375/mo with a minimum 1-year term.',
   ],
   [
     'Where are the SDRs from?',
@@ -395,7 +398,7 @@ const founders = [
     name: 'Michael K. Adonteng',
     title: 'Co-Founder',
     initials: 'MA',
-    image: '/team/michael-adonteng.png',
+    image: '/team/michael-adonteng.webp',
     bio: [
       'Michael brings 18 years of B2B sales and leadership experience to Talvara. He has spent his career helping founders and revenue teams design go-to-market strategy, build outbound playbooks, sharpen sales EQ, and embed operating cadence that compounds over time.',
       'As an advisor to startup executives across diverse regions and verticals, Michael specialises in scaling revenue and building high-performing teams - with a track record that includes $32M+ in influenced revenue, reduced SDR ramp times, stronger pipeline quality, and predictable forecasting. At Talvara, he leads client strategy and deployment - ensuring every engagement is accountable to outcomes, not just activity.',
@@ -406,7 +409,7 @@ const founders = [
     name: 'Erica Franklin',
     title: 'Co-Founder',
     initials: 'EF',
-    image: '/team/erica-franklin.png',
+    image: '/team/erica-franklin.webp',
     imageFit: 'contain',
     bio: [
       "Erica brings over 15 years of experience across sales leadership, commercial education, and relationship-driven growth. She is the Chief Operating Officer of the Africa Sales Academy - the training infrastructure that powers Talvara's SDR pool - where she leads the design and delivery of the six-week structured commercial programme that every Talvara SDR completes before assessment.",
@@ -415,21 +418,10 @@ const founders = [
     linkedin: 'https://www.linkedin.com/in/erica-franklin',
   },
   {
-    name: 'Name TBC',
-    title: 'CTO',
-    initials: 'CTO',
-    image: '',
-    imageFit: 'cover',
-    bio: [
-      'Bio coming soon.',
-    ],
-    linkedin: '',
-  },
-  {
     name: 'René Carayol MBE',
     title: 'Strategic Advisor — Leadership & Culture',
     initials: 'RC',
-    image: '/team/rene-carayol.png',
+    image: '/team/rene-carayol.webp',
     imageFit: 'cover',
     bio: [
       '30+ years coaching FTSE 100 / Fortune 500 CEOs. Board: PepsiCo · IPC Media · Marks & Spencer. His networks and counsel accelerate Talvara into institutional rooms.',
@@ -751,16 +743,36 @@ function prepareWordReveal(el) {
   el.dataset.wordRevealReady = 'true'
 }
 
-function App() {
-  const [path, setPath] = useState(window.location.pathname)
+function updateHeadTags(path) {
+  const meta = getPageMeta(path)
+  const url = `${SITE_URL}${path === '/' ? '/' : path}`
+
+  document.title = meta.title
+  document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description)
+  document.querySelector('link[rel="canonical"]')?.setAttribute('href', url)
+  document.querySelector('meta[property="og:title"]')?.setAttribute('content', meta.title)
+  document.querySelector('meta[property="og:description"]')?.setAttribute('content', meta.description)
+  document.querySelector('meta[property="og:url"]')?.setAttribute('content', url)
+  document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', meta.title)
+  document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', meta.description)
+}
+
+function App({ initialPath }) {
+  const [path, setPath] = useState(() =>
+    normalisePath(initialPath ?? window.location.pathname),
+  )
   const [menuOpen, setMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
-    const onPop = () => setPath(window.location.pathname)
+    const onPop = () => setPath(normalisePath(window.location.pathname))
     window.addEventListener('popstate', onPop)
     return () => window.removeEventListener('popstate', onPop)
   }, [])
+
+  useEffect(() => {
+    updateHeadTags(path)
+  }, [path])
 
   useEffect(() => {
     document.documentElement.classList.add('animations-ready')
@@ -847,21 +859,31 @@ function App() {
         return <Legal type="privacy" />
       case '/terms-of-service':
         return <Legal type="terms" />
-      default:
+      case '/':
         return <Home />
+      default:
+        return <NotFound />
     }
   }, [path])
 
   return (
     <div className="site-shell">
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
       <Header
         path={path}
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
         isScrolled={isScrolled}
       />
-      <main>{page}</main>
+      <main id="main-content" tabIndex={-1}>{page}</main>
       <Footer />
+      {path !== '/contact' && pageMeta[path] && (
+        <div className="mobile-sticky-cta">
+          <CTAButton>Start Your 90-Day Pilot</CTAButton>
+        </div>
+      )}
     </div>
   )
 }
@@ -941,10 +963,10 @@ function Footer() {
     <footer className="footer">
       <div className="footer-grid">
         <div>
-          <Link href="/" className="footer-brand">
+          <Link href="/" className="footer-brand" aria-label="Talvara home">
             <img className="brand-logo footer-logo" src="/talvara-logo.svg" alt="" aria-hidden="true" />
           </Link>
-          <p>Talent sourced across Africa. Active cohorts: Nigeria & Ghana.</p>
+          <p className="footer-tagline">Talent sourced across Africa. Active cohorts: Nigeria & Ghana.</p>
         </div>
         <div className="footer-links">
           {navLinks.map((link) => (
@@ -963,7 +985,7 @@ function Footer() {
       </div>
       <div className="footer-bottom">
         <span>© {CURRENT_YEAR} Talvara. All rights reserved.</span>
-        <span>{CONTACT_EMAIL}</span>
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
       </div>
     </footer>
   )
@@ -1012,7 +1034,10 @@ function Avatar({ name, custom, src, fit, style, alt }) {
         className={`avatar avatar-image ${fit === 'contain' ? 'avatar-image-contain' : ''}`}
         src={src}
         alt={alt ?? `${name} profile`}
+        width="160"
+        height="160"
         loading="lazy"
+        decoding="async"
         style={style}
       />
     )
@@ -1032,7 +1057,9 @@ function Home() {
               <span className="hero-main-line" data-word-reveal>
                 Talent that <br className="mobile-only" />arrives ready.
               </span>
-              <span className="hero-tagline">AI-matched. Human-led. Pipeline from day 12.</span>
+              <span className="hero-tagline">
+                <span className="nowrap">AI-matched.</span> <span className="nowrap">Human-led.</span> Pipeline from day 12.
+              </span>
             </h1>
             <p>
               Our AI ranks and matches. Our humans decide, deploy, and stay accountable.
@@ -1088,10 +1115,9 @@ function LogoBar() {
   return (
     <section className="logo-section">
       <div className="logo-section-copy">
-        <Eyebrow>Trusted by growth-stage companies</Eyebrow>
-        <p>Client and partner logos from confirmed Talvara proof points.</p>
+        <Eyebrow>Our partners</Eyebrow>
       </div>
-      <div className="logo-track" aria-label="Client and partner logos">
+      <div className="logo-track" aria-label="Partner logos">
         {logos.map((logo) => (
           <span className={`wordmark logo-card ${logo.invert ? 'logo-invert' : ''}`} key={logo.name}>
             <img src={logo.src} alt={logo.name} loading="lazy" />
@@ -1181,7 +1207,7 @@ function PlatformOverview() {
       title: 'Talvara - Step 02 onwards',
       subtitle: 'The managed revenue platform - the investable asset',
       body: 'The platform, the RRS IP, the performance data, the client relationships, the Client Portal, and the SDR Dashboard. Every SDR who reaches a client has passed through ASA, been trained on MySalesLMS, and cleared the Revenue Readiness Score. This is what grows, scales, and attracts investment.',
-      logo: '/talvara-logo.svg',
+      logo: '/talvara-logo-dark.svg',
     },
   ]
 
@@ -1366,6 +1392,7 @@ function PortalShowcase({ platform = false }) {
             <span>Talvara / Pipeline</span>
             <strong>Week 04</strong>
           </div>
+          <p className="mock-disclaimer">Illustrative data</p>
           <div className="mock-kpis">
             <div><span>Calls</span><strong>312</strong></div>
             <div><span>Meetings</span><strong>18</strong></div>
@@ -1399,6 +1426,7 @@ function SDRDashboardShowcase() {
             <span>SDR Dashboard</span>
             <strong>Today</strong>
           </div>
+          <p className="mock-disclaimer">Illustrative data</p>
           <div className="dashboard-score">
             <span>RR Score</span>
             <strong>7.5</strong>
@@ -1438,6 +1466,7 @@ function SDRDashboardShowcase() {
 
 function Testimonials() {
   const scrollingTestimonials = [...testimonials, ...testimonials]
+  const [paused, setPaused] = useState(false)
 
   return (
     <section className="section cream testimonial-section">
@@ -1446,7 +1475,21 @@ function Testimonials() {
         <strong>Results that speak for themselves.</strong>
       </div>
       <SectionIntro align="center" eyebrow="What Our Clients Say" title="Results that speak for themselves." />
-      <div className="testimonial-marquee" aria-label="Client testimonials">
+      <div className="marquee-controls">
+        <button
+          className="marquee-toggle"
+          type="button"
+          aria-pressed={paused}
+          onClick={() => setPaused((value) => !value)}
+        >
+          {paused ? 'Play testimonials' : 'Pause testimonials'}
+        </button>
+      </div>
+      <div
+        className={`testimonial-marquee ${paused ? 'is-paused' : ''}`}
+        role="region"
+        aria-label="Client testimonials"
+      >
         <div className="testimonial-track">
         {scrollingTestimonials.map((item, index) => (
           <Card
@@ -1460,7 +1503,15 @@ function Testimonials() {
             <p>{item.quote}</p>
             <div className="attribution">
               {item.image ? (
-                <img className="testimonial-avatar" src={item.image} alt={`${item.name} profile`} loading="lazy" />
+                <img
+                  className="testimonial-avatar"
+                  src={item.image}
+                  alt={`${item.name} profile`}
+                  width="160"
+                  height="160"
+                  loading="lazy"
+                  decoding="async"
+                />
               ) : (
                 <span className="mini-logo" aria-hidden="true">{item.logo}</span>
               )}
@@ -1548,10 +1599,10 @@ function PilotCTA() {
     <section className="cta-band dark-section" data-reveal>
         <h2 data-word-reveal>Start with 90 days. Exit cleanly if it doesn't work.</h2>
         <p>
-          $7,500 total. AI-matched candidates, human-managed delivery. Live Client
-          Portal from day one. Weekly reporting from day 12. Free replacement
-          guarantee. At Day 90 - convert or walk away. The data makes the decision,
-          not a sales pitch.
+          $7,500 for 90 days. AI-matched candidates, human-managed delivery. Live
+          Client Portal from day one. Weekly reporting from day 12. Free replacement
+          guarantee. At Day 90, exit and owe nothing more, or convert to Managed SDR
+          at $3,375/mo. The data makes the decision, not a sales pitch.
         </p>
         <ButtonRow>
           <CTAButton>Book a Discovery Call</CTAButton>
@@ -1734,6 +1785,7 @@ function Pricing() {
               <strong>{offer.price}</strong>
               <em>{offer.meta}</em>
               <p>{offer.body}</p>
+              {offer.dayNinety && <p className="day-ninety">{offer.dayNinety}</p>}
               <p className="best-for">{offer.bestFor}</p>
               {offer.featured && <CTAButton>Start Your 90-Day Pilot</CTAButton>}
             </Card>
@@ -1749,7 +1801,14 @@ function Pricing() {
           Training, assessment IP, Client Portal, and SDR Dashboard are built into
           Talvara. That is what makes the replacement guarantee possible.
         </SectionIntro>
-        <div className="comparison-table feature-card motion-card" data-reveal>
+        <p className="table-scroll-hint" aria-hidden="true">Swipe to compare →</p>
+        <div
+          className="comparison-table feature-card motion-card"
+          data-reveal
+          role="region"
+          aria-label="Talvara compared with alternatives"
+          tabIndex={0}
+        >
           <div className="comparison-table-head">
             <span>Feature</span>
             <span>Talvara</span>
@@ -1953,7 +2012,7 @@ function InfrastructureVisual() {
     {
       name: 'Talvara',
       label: 'Deploy + manage',
-      logo: '/talvara-logo.svg',
+      logo: '/talvara-logo-dark.svg',
     },
   ]
 
@@ -2041,15 +2100,57 @@ function ContactSignalVisual() {
 
 function Contact() {
   const [formStatus, setFormStatus] = useState('idle')
+  const [fieldErrors, setFieldErrors] = useState({})
+
+  function errorMessageFor(field) {
+    if (field.validity.valueMissing) return 'This field is required.'
+    if (field.validity.typeMismatch) return 'Enter a valid email address.'
+    return field.validationMessage
+  }
+
+  function handleFieldBlur(event) {
+    const field = event.target
+    if (!fieldErrors[field.name]) return
+    setFieldErrors((errors) => ({
+      ...errors,
+      [field.name]: field.validity.valid ? undefined : errorMessageFor(field),
+    }))
+  }
+
+  function fieldProps(name) {
+    const errorId = `${name}-error`
+    return {
+      name,
+      onBlur: handleFieldBlur,
+      'aria-invalid': fieldErrors[name] ? 'true' : undefined,
+      'aria-describedby': fieldErrors[name] ? errorId : undefined,
+    }
+  }
+
+  function fieldError(name) {
+    if (!fieldErrors[name]) return null
+    return (
+      <span className="field-error" id={`${name}-error`}>
+        {fieldErrors[name]}
+      </span>
+    )
+  }
 
   async function handleContactSubmit(event) {
     event.preventDefault()
 
     const form = event.currentTarget
     if (!form.checkValidity()) {
-      form.reportValidity()
+      const invalidFields = Array.from(form.elements).filter(
+        (field) => field.willValidate && !field.validity.valid,
+      )
+      setFieldErrors(
+        Object.fromEntries(invalidFields.map((field) => [field.name, errorMessageFor(field)])),
+      )
+      invalidFields[0]?.focus()
       return
     }
+    setFieldErrors({})
 
     setFormStatus('sending')
     const payload = new URLSearchParams(new FormData(form))
@@ -2085,6 +2186,7 @@ function Contact() {
             encType="application/x-www-form-urlencoded"
             acceptCharset="UTF-8"
             onSubmit={handleContactSubmit}
+            noValidate
             data-reveal
           >
             <input type="hidden" name="fvv" value="1" />
@@ -2094,50 +2196,58 @@ function Contact() {
             <input type="hidden" name={`${googleFormFields.situation}_sentinel`} value="" />
             <label>
               First name
-              <Input name={googleFormFields.firstName} autoComplete="given-name" required />
+              <Input {...fieldProps(googleFormFields.firstName)} autoComplete="given-name" required />
+              {fieldError(googleFormFields.firstName)}
             </label>
             <label>
               Last name
-              <Input name={googleFormFields.lastName} autoComplete="family-name" required />
+              <Input {...fieldProps(googleFormFields.lastName)} autoComplete="family-name" required />
+              {fieldError(googleFormFields.lastName)}
             </label>
             <label>
               Email
-              <Input name={googleFormFields.email} type="email" autoComplete="email" required />
+              <Input {...fieldProps(googleFormFields.email)} type="email" autoComplete="email" required />
+              {fieldError(googleFormFields.email)}
             </label>
             <label>
               Company
-              <Input name={googleFormFields.company} autoComplete="organization" required />
+              <Input {...fieldProps(googleFormFields.company)} autoComplete="organization" required />
+              {fieldError(googleFormFields.company)}
             </label>
             <label>
               Role / Title
-              <Input name={googleFormFields.role} required />
+              <Input {...fieldProps(googleFormFields.role)} required />
+              {fieldError(googleFormFields.role)}
             </label>
             <label>
               Company stage
-              <Select name={googleFormFields.stage} defaultValue="" required>
+              <Select {...fieldProps(googleFormFields.stage)} defaultValue="" required>
                 <option value="" disabled>Select stage</option>
                 {companyStageOptions.map(([value, label]) => (
                   <option key={value} value={value}>{label}</option>
                 ))}
               </Select>
+              {fieldError(googleFormFields.stage)}
             </label>
             <label>
               Current outbound situation
-              <Select name={googleFormFields.situation} defaultValue="" required>
+              <Select {...fieldProps(googleFormFields.situation)} defaultValue="" required>
                 <option value="" disabled>Select situation</option>
                 {outboundSituationOptions.map(([value, label]) => (
                   <option key={value} value={value}>{label}</option>
                 ))}
               </Select>
+              {fieldError(googleFormFields.situation)}
             </label>
             <label className="full">
               Message
               <Textarea
-                name={googleFormFields.message}
+                {...fieldProps(googleFormFields.message)}
                 rows="6"
                 placeholder="What's your outbound challenge? What have you already tried?"
                 required
               />
+              {fieldError(googleFormFields.message)}
             </label>
             {formStatus === 'sent' && (
               <p className="form-status full" role="status">
@@ -2146,18 +2256,20 @@ function Contact() {
             )}
             {formStatus === 'error' && (
               <p className="form-status form-status-error full" role="alert">
-                The form could not send. Please email {CONTACT_EMAIL} or book a discovery call.
+                The form could not send. Please email{' '}
+                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> or book a discovery call.
               </p>
             )}
             <Button className="button primary full" type="submit" disabled={formStatus === 'sending'}>
-              {formStatus === 'sending' ? 'Sending...' : 'Send Enquiry ->'}
+              {formStatus === 'sending' ? 'Sending...' : 'Send Enquiry'}
             </Button>
           </form>
           <Card as="aside" className="call-card cta-card conversion-card motion-card" data-reveal>
             <Eyebrow>Prefer a call?</Eyebrow>
             <h2>Book a Discovery Call</h2>
             <p>
-              Contact: {CONTACT_EMAIL}. We respond within 24 hours on business days.
+              Contact: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. We
+              respond within 24 hours on business days.
             </p>
             <ul className="call-expectations">
               <li>Your current pipeline situation and what's already been tried</li>
@@ -2172,6 +2284,26 @@ function Contact() {
             </p>
             <CTAButton>Book a Discovery Call</CTAButton>
           </Card>
+        </div>
+      </section>
+    </>
+  )
+}
+
+function NotFound() {
+  return (
+    <>
+      <PageHero
+        eyebrow="404"
+        title="This page does not exist."
+        subtitle="The link may be old or mistyped. Everything about Talvara is one click away."
+      />
+      <section className="section">
+        <div className="not-found-actions">
+          <ButtonRow>
+            <CTAButton href="/" variant="dark">Go to the homepage</CTAButton>
+            <CTAButton href="/pricing" variant="outline-dark">View Pricing</CTAButton>
+          </ButtonRow>
         </div>
       </section>
     </>
