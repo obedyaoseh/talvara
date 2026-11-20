@@ -8047,3 +8047,261 @@ h3[data-word-reveal],
     overflow-wrap: break-word !important;
   }
 }
+
+/* Website review fixes (October 2026): AA contrast palette, accessibility,
+   and mobile gaps. Kept last so these win over the earlier layered rules. */
+:root {
+  --gold-text: #7A5F1C;
+  --caption: #5E564D;
+  --muted-on-dark: #A39A8E;
+  --footer-text: #B8AFA3;
+  --body-text: #4C443C;
+  --type-tertiary: var(--caption);
+  --type-on-dark-tertiary: var(--muted-on-dark);
+  --text-body-xs: 12px;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: var(--talvara-gold);
+  color: var(--talvara-dark);
+  font-weight: 700;
+  transform: translateY(-160%);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+main:focus {
+  outline: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--gold-text);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.site-header a:focus-visible,
+.site-header button:focus-visible,
+.footer a:focus-visible,
+.dark-section a:focus-visible,
+.mobile-sticky-cta a:focus-visible {
+  outline-color: var(--talvara-gold);
+}
+
+main:focus-visible {
+  outline: none;
+}
+
+.footer p.footer-tagline,
+.footer .footer-tagline {
+  color: var(--footer-text) !important;
+  opacity: 1 !important;
+}
+
+.footer-links a,
+.footer-bottom a,
+.founder-card a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.founder-bio {
+  max-height: none;
+  overflow: visible;
+  padding-right: 0;
+}
+
+.mock-disclaimer {
+  margin: 0 0 12px;
+  color: var(--muted-on-dark);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dashboard-panel .mock-disclaimer {
+  color: var(--caption);
+}
+
+.offer-card .day-ninety {
+  padding: 12px 14px;
+  border-left: 3px solid var(--talvara-gold);
+  background: rgba(201, 168, 76, 0.1);
+  color: var(--talvara-dark);
+  font-weight: 500;
+}
+
+.marquee-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.marquee-toggle {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--talvara-dark);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.marquee-toggle:hover {
+  border-color: var(--gold-text);
+}
+
+.testimonial-marquee.is-paused .testimonial-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-track,
+  .testimonial-marquee .testimonial-track {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .marquee-controls {
+    display: none;
+  }
+}
+
+.table-scroll-hint {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .table-scroll-hint {
+    display: block;
+    width: min(1180px, calc(100vw - 32px));
+    margin: 0 auto 10px;
+    color: var(--caption);
+    font-size: 14px;
+    font-weight: 700;
+    text-align: right;
+  }
+
+  .comparison-table {
+    background:
+      linear-gradient(to right, var(--card) 30%, rgba(255, 253, 248, 0)) left / 40px 100% no-repeat local,
+      linear-gradient(to left, var(--card) 30%, rgba(255, 253, 248, 0)) right / 40px 100% no-repeat local,
+      linear-gradient(to right, rgba(26, 23, 20, 0.14), rgba(26, 23, 20, 0)) left / 14px 100% no-repeat scroll,
+      linear-gradient(to left, rgba(26, 23, 20, 0.14), rgba(26, 23, 20, 0)) right / 14px 100% no-repeat scroll,
+      var(--card);
+  }
+}
+
+.field-error {
+  display: block;
+  margin-top: 6px;
+  color: #9B2C1F;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.contact-form [aria-invalid='true'] {
+  border-color: #9B2C1F;
+}
+
+.form-status a,
+.call-card p a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.mobile-sticky-cta {
+  display: none;
+}
+
+@media (max-width: 1040px) {
+  .mobile-sticky-cta {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 90;
+    display: flex;
+    justify-content: center;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    background: rgba(26, 23, 20, 0.94);
+    border-top: 1px solid rgba(250, 247, 242, 0.12);
+  }
+
+  .mobile-sticky-cta .button {
+    width: min(100%, 420px);
+    justify-content: center;
+  }
+
+  .site-shell:has(.mobile-sticky-cta)::after {
+    content: '';
+    display: block;
+    height: 76px;
+    background: var(--talvara-dark);
+  }
+}
+
+/* Gold and grey text on light backgrounds, measured with a contrast audit.
+   #C9A84C stays for buttons, rules and text on ink. */
+.hero-section .eyebrow,
+.hero-section .hero-tagline,
+.section-intro:not(.dark) .eyebrow,
+.section:not(.dark-section) .card-thumb,
+.section:not(.dark-section) .card-label,
+.section:not(.dark-section) .value-index,
+.section:not(.dark-section) .quote-mark,
+.section:not(.dark-section) .ui-badge-gold,
+.offer-card strong,
+.credibility-strip strong,
+.founder-card h3 + span,
+.principle-card > span,
+.dashboard-score strong,
+.comparison-box .talvara-row em,
+.comparison-box .talvara-row strong {
+  color: var(--gold-text) !important;
+}
+
+.hero-section .hero-system-rail span {
+  color: var(--caption) !important;
+  border-color: var(--border) !important;
+}
+
+.comparison-box em,
+.section:not(.dark-section) .card-label:not(.offer-card .card-label),
+.credibility-strip span {
+  color: var(--caption) !important;
+}
+
+.portal-mock .feature-list li {
+  color: var(--muted-on-dark) !important;
+}
+
+.not-found-actions .button-row {
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.footer-bottom {
+  align-items: center;
+}
